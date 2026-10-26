@@ -1,19 +1,9 @@
-<header class="sticky top-0 z-30 flex h-14 items-center gap-3 border-b bg-background/95 px-4">
-  <button
-    hlmBtn
-    variant="ghost"
-    size="icon"
-    aria-label="Toggle menu"
-    (click)="toggleSidebar.emit()"
+<header class="flex h-14 items-center gap-4 border-b px-4">
+  <span class="font-semibold"
+    >Archon <span class="font-normal text-muted-foreground">Archive Pilot</span></span
   >
-    <ng-icon name="lucideMenu" class="size-5" />
-  </button>
-  <a routerLink="/" class="font-semibold tracking-tight"
-    >Archon <span class="font-normal text-muted-foreground">Pilot</span></a
-  >
-
-  <div class="ml-4 inline-flex rounded-lg bg-muted p-1" role="group" aria-label="Profile">
-    @for (p of profile.profiles; track p.id) {
+  <div class="inline-flex rounded-lg bg-muted p-1">
+    @for (p of profiles; track p.id) {
       <button
         type="button"
         class="rounded-md px-3 py-1 text-sm"
@@ -22,27 +12,12 @@
             ? 'bg-background font-medium shadow-sm'
             : 'text-muted-foreground'
         "
-        [attr.aria-pressed]="profile.profile() === p.id"
         (click)="profile.switchTo(p.id)"
       >
         {{ p.label }}
       </button>
     }
   </div>
-
-  @if (loading.busy()) {
-    <hlm-spinner class="size-4" />
-  }
-  <div class="ml-auto flex items-center gap-2">
-    <button hlmBtn variant="ghost" size="icon" aria-label="Toggle theme" (click)="theme.toggle()">
-      <ng-icon [name]="theme.dark() ? 'lucideSun' : 'lucideMoon'" class="size-4" />
-    </button>
-    <hlm-avatar class="size-8">
-      <span hlmAvatarFallback class="text-xs">{{ initials() }}</span>
-    </hlm-avatar>
-    <span class="hidden text-sm sm:inline">{{ auth.user()?.displayName }}</span>
-    <a hlmBtn variant="ghost" size="icon" routerLink="/logout" aria-label="Sign out">
-      <ng-icon name="lucideLogOut" class="size-4" />
-    </a>
-  </div>
+  <span class="ml-auto text-sm">{{ auth.user()?.name }}</span>
+  <button hlmBtn variant="ghost" size="sm" (click)="auth.logout()">Sign out</button>
 </header>

@@ -6,63 +6,63 @@ export const LIVE_ROUTES: Routes = [
   {
     path: 'overview',
     loadComponent: () => import('./overview/overview').then((m) => m.LiveOverview),
-    title: 'Overview · Live',
+    title: 'Overview',
   },
   {
     path: 'dashboard',
     loadComponent: () => import('./dashboard/dashboard').then((m) => m.LiveDashboard),
-    title: 'Dashboard · Live',
+    title: 'Dashboard',
   },
   {
     path: 'report',
     loadComponent: () => import('./report/report-page/report-page').then((m) => m.LiveReportPage),
-    title: 'Report · Live',
+    title: 'Report',
   },
   {
     path: 'objects',
     loadComponent: () =>
       import('./objects/objects-page/objects-page').then((m) => m.LiveObjectsPage),
-    title: 'Objects · Live',
+    title: 'Objects',
   },
   {
     path: 'jobs',
     loadComponent: () => import('./jobs/jobs-page/jobs-page').then((m) => m.LiveJobsPage),
-    title: 'Jobs · Live',
+    title: 'Jobs',
   },
   {
     path: 'jobs/:jobId',
     loadComponent: () => import('./jobs/job-detail/job-detail').then((m) => m.LiveJobDetail),
-    title: 'Job · Live',
+    title: 'Job',
   },
   {
     path: 'analysis',
     loadComponent: () => import('./analysis/analysis').then((m) => m.LiveAnalysis),
-    title: 'Analysis · Live',
+    title: 'Analysis',
   },
   {
     path: 'calendar',
     loadComponent: () => import('./calendar/calendar').then((m) => m.LiveCalendar),
-    title: 'Calendar · Live',
+    title: 'Calendar',
   },
   {
     path: 'sessions',
     loadComponent: () => import('./sessions/sessions').then((m) => m.LiveSessions),
-    title: 'Sessions · Live',
+    title: 'Sessions',
   },
   {
     path: 'sources',
     loadComponent: () => import('./sources/sources').then((m) => m.LiveSources),
-    title: 'Sources · Live',
+    title: 'Sources',
   },
   {
     path: 'repositories',
     loadComponent: () => import('./repositories/repositories').then((m) => m.LiveRepositories),
-    title: 'Repositories · Live',
+    title: 'Repositories',
   },
-  // kept as a route, not in the menu (functional spec §9)
+  // route kept, not in the menu (functional spec §9)
   {
     path: 'livelog',
     loadComponent: () => import('./livelog/livelog').then((m) => m.LiveLivelog),
-    title: 'Live log · Live',
+    title: 'Live log',
   },
 ];

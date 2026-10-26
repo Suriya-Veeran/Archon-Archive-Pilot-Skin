@@ -1,42 +1,31 @@
-<ng-template #link let-item>
-  <a
-    [routerLink]="item.path"
-    routerLinkActive="bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-    class="flex h-9 items-center gap-3 rounded-md px-3 text-sm hover:bg-sidebar-accent"
-    [attr.title]="collapsed() ? item.label : null"
-  >
-    @if (item.icon) {
-      <ng-icon [name]="item.icon" class="size-4 shrink-0" />
-    }
-    @if (!collapsed()) {
-      <span class="truncate">{{ item.label }}</span>
-    }
-  </a>
-</ng-template>
-
-<nav
-  class="flex h-full flex-col gap-1 overflow-y-auto border-r bg-sidebar p-2 text-sidebar-foreground transition-[width] duration-200"
-  [class]="collapsed() ? 'w-14' : 'w-60'"
-  aria-label="Main"
->
+<nav class="flex h-full w-60 flex-col gap-1 overflow-y-auto border-r bg-sidebar p-2 text-sm">
   @for (item of profile.nav(); track item.path) {
-    <ng-container *ngTemplateOutlet="link; context: { $implicit: item }" />
-    @if (item.children && !collapsed()) {
-      <div class="ml-6 flex flex-col gap-0.5 border-l pl-2">
-        @for (child of item.children; track child.path) {
-          <a
-            [routerLink]="child.path"
-            routerLinkActive="text-foreground font-medium"
-            class="rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:text-foreground"
-            >{{ child.label }}</a
-          >
-        }
-      </div>
+    <a
+      [routerLink]="item.path"
+      routerLinkActive="bg-sidebar-accent font-medium"
+      class="rounded-md px-3 py-2"
+    >
+      {{ item.label }}
+    </a>
+    @for (child of item.children ?? []; track child.path) {
+      <a
+        [routerLink]="child.path"
+        routerLinkActive="font-medium text-foreground"
+        class="ml-6 px-2 py-1 text-muted-foreground"
+      >
+        {{ child.label }}
+      </a>
     }
   }
   <div class="mt-auto flex flex-col gap-1 border-t pt-2">
-    @for (item of sharedItems; track item.path) {
-      <ng-container *ngTemplateOutlet="link; context: { $implicit: item }" />
+    @for (item of shared; track item.path) {
+      <a
+        [routerLink]="item.path"
+        routerLinkActive="bg-sidebar-accent font-medium"
+        class="rounded-md px-3 py-2"
+      >
+        {{ item.label }}
+      </a>
     }
   </div>
 </nav>

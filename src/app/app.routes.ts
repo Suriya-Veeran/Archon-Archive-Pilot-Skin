@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from '@auth/auth.guard';
 import { AUTH_ROUTES } from '@auth/authentications.routes';
-import { authGuard } from '@auth/guards/auth.guard';
-import { profileHomeGuard } from '@core/guards/profile-home.guard';
 import { Content } from '@core/layout/content/content';
 
 export const routes: Routes = [
@@ -11,7 +10,7 @@ export const routes: Routes = [
     component: Content,
     canActivate: [authGuard],
     children: [
-      { path: '', pathMatch: 'full', canActivate: [profileHomeGuard], children: [] },
+      { path: '', pathMatch: 'full', redirectTo: 'live' },
       {
         path: 'live',
         loadChildren: () => import('@modules/live/live.routes').then((m) => m.LIVE_ROUTES),
@@ -23,13 +22,8 @@ export const routes: Routes = [
       {
         path: 'settings',
         loadComponent: () => import('@modules/settings/settings').then((m) => m.Settings),
-        title: 'Settings · Archon',
       },
-      {
-        path: 'tour',
-        loadComponent: () => import('@modules/tour/tour').then((m) => m.Tour),
-        title: 'Tour · Archon',
-      },
+      { path: 'tour', loadComponent: () => import('@modules/tour/tour').then((m) => m.Tour) },
     ],
   },
   { path: '**', redirectTo: '' },

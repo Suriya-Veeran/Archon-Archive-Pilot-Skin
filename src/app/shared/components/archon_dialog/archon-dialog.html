@@ -1,27 +1,14 @@
 <hlm-dialog [state]="open() ? 'open' : 'closed'" (closed)="open.set(false)">
-  <hlm-dialog-content *hlmDialogPortal="let ctx" [class]="widthClass()">
+  <hlm-dialog-content *hlmDialogPortal="let ctx" class="sm:max-w-lg">
     <hlm-dialog-header>
       <h3 hlmDialogTitle>{{ title() }}</h3>
-      @if (description()) {
-        <p hlmDialogDescription>{{ description() }}</p>
-      }
     </hlm-dialog-header>
     <ng-content />
     <hlm-dialog-footer>
       <button hlmBtn variant="outline" type="button" (click)="open.set(false)">
         {{ cancelLabel() }}
       </button>
-      @if (confirmLabel()) {
-        <button
-          hlmBtn
-          type="button"
-          [variant]="destructive() ? 'destructive' : 'default'"
-          [disabled]="confirmDisabled()"
-          (click)="confirm.emit()"
-        >
-          {{ confirmLabel() }}
-        </button>
-      }
+      <button hlmBtn type="button" (click)="confirm.emit()">{{ confirmLabel() }}</button>
     </hlm-dialog-footer>
   </hlm-dialog-content>
 </hlm-dialog>

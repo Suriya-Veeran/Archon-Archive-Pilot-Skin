@@ -3,15 +3,10 @@ import { environment } from '@env/environment';
 
 export interface AppConfig {
   apiBaseUrl: string;
-  ssoLoginUrl: string;
   useMockAuth: boolean;
 }
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('APP_CONFIG', {
   providedIn: 'root',
-  factory: () => ({
-    apiBaseUrl: environment.apiBaseUrl,
-    ssoLoginUrl: environment.ssoLoginUrl,
-    useMockAuth: environment.useMockAuth,
-  }),
+  factory: () => ({ apiBaseUrl: environment.apiBaseUrl, useMockAuth: environment.useMockAuth }),
 });

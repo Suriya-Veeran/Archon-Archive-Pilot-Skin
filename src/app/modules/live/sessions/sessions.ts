@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ArchonSharedImports, ArchonUiImports } from '@shared';
+import { ArchonSharedImports } from '@shared';
 
 @Component({
   selector: 'archon-live-sessions',
-  imports: [ArchonSharedImports, ArchonUiImports],
+  imports: [ArchonSharedImports],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sessions.html',
 })

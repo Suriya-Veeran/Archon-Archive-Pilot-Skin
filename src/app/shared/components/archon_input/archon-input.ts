@@ -5,7 +5,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 let nextId = 0;
 
-/** Labelled text input that works with formControlName / ngModel. */
+/** Labelled input that works with formControlName / ngModel. */
 @Component({
   selector: 'archon-input',
   imports: [HlmInputImports, HlmLabelImports],
@@ -17,17 +17,12 @@ let nextId = 0;
 })
 export class ArchonInput implements ControlValueAccessor {
   readonly label = input<string>();
-  readonly type = input<'text' | 'password' | 'email' | 'number' | 'search'>('text');
-  readonly placeholder = input('');
-  readonly autocomplete = input('off');
-  readonly hint = input<string>();
+  readonly type = input<'text' | 'password' | 'email' | 'number'>('text');
   readonly error = input<string | null>();
-  readonly required = input(false);
 
   protected readonly id = `archon-input-${nextId++}`;
   protected readonly value = signal('');
   protected readonly disabled = signal(false);
-
   private onChange: (v: string) => void = () => {};
   protected onTouched: () => void = () => {};
 

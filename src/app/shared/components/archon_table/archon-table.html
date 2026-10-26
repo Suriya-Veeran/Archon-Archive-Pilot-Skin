@@ -1,0 +1,58 @@
+<div hlmTableContainer class="rounded-md border">
+  <table hlmTable>
+    <thead hlmTHead>
+      <tr hlmTr>
+        @for (col of columns(); track col.key) {
+          <th hlmTh [class.text-right]="col.align === 'right'">{{ col.header }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody hlmTBody>
+      @for (row of pageRows(); track $index) {
+        <tr hlmTr class="cursor-pointer" (click)="rowClick.emit(row)">
+          @for (col of columns(); track col.key) {
+            <td hlmTd [class.text-right]="col.align === 'right'">
+              @if (cellMap().get(col.key); as tpl) {
+                <ng-container *ngTemplateOutlet="tpl; context: { $implicit: row }" />
+              } @else {
+                {{ cell(row, col) }}
+              }
+            </td>
+          }
+        </tr>
+      } @empty {
+        <tr hlmTr>
+          <td
+            hlmTd
+            class="h-24 text-center text-muted-foreground"
+            [attr.colspan]="columns().length"
+          >
+            {{ empty() }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+@if (pageCount() > 1) {
+  <div class="mt-3 flex justify-end gap-2">
+    <button
+      hlmBtn
+      variant="outline"
+      size="sm"
+      [disabled]="page() === 0"
+      (click)="page.set(page() - 1)"
+    >
+      Previous
+    </button>
+    <button
+      hlmBtn
+      variant="outline"
+      size="sm"
+      [disabled]="page() >= pageCount() - 1"
+      (click)="page.set(page() + 1)"
+    >
+      Next
+    </button>
+  </div>
+}

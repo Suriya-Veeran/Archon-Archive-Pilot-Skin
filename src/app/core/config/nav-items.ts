@@ -1,25 +1,24 @@
-import { NavItem, Profile } from '../models';
+import { NavItem, Profile } from '../models/profile.model';
 
 /** Sidebar per profile. live/livelog keeps its route but is not in the menu (functional spec §9). */
 export const NAV_ITEMS: Record<Profile, NavItem[]> = {
   live: [
-    { label: 'Overview', path: '/live/overview', icon: 'lucideHouse' },
-    { label: 'Dashboard', path: '/live/dashboard', icon: 'lucideLayoutDashboard' },
-    { label: 'Report', path: '/live/report', icon: 'lucideFileText' },
-    { label: 'Objects', path: '/live/objects', icon: 'lucideBoxes' },
-    { label: 'Jobs', path: '/live/jobs', icon: 'lucideListChecks' },
-    { label: 'Analysis', path: '/live/analysis', icon: 'lucideActivity' },
-    { label: 'Calendar', path: '/live/calendar', icon: 'lucideCalendar' },
-    { label: 'Sessions', path: '/live/sessions', icon: 'lucideTimer' },
-    { label: 'Sources', path: '/live/sources', icon: 'lucideServer' },
-    { label: 'Repositories', path: '/live/repositories', icon: 'lucideDatabase' },
+    { label: 'Overview', path: '/live/overview' },
+    { label: 'Dashboard', path: '/live/dashboard' },
+    { label: 'Report', path: '/live/report' },
+    { label: 'Objects', path: '/live/objects' },
+    { label: 'Jobs', path: '/live/jobs' },
+    { label: 'Analysis', path: '/live/analysis' },
+    { label: 'Calendar', path: '/live/calendar' },
+    { label: 'Sessions', path: '/live/sessions' },
+    { label: 'Sources', path: '/live/sources' },
+    { label: 'Repositories', path: '/live/repositories' },
   ],
   decom: [
-    { label: 'Overview', path: '/decom/overview', icon: 'lucideHouse' },
+    { label: 'Overview', path: '/decom/overview' },
     {
       label: 'Discover',
       path: '/decom/discover',
-      icon: 'lucideSearch',
       children: [
         { label: 'Business area', path: '/decom/discover/business-area' },
         { label: 'T-codes', path: '/decom/discover/tcodes' },
@@ -29,18 +28,16 @@ export const NAV_ITEMS: Record<Profile, NavItem[]> = {
     {
       label: 'Statistics',
       path: '/decom/statistics',
-      icon: 'lucideChartColumn',
       children: [
         { label: 'Dashboards', path: '/decom/statistics/dashboards' },
         { label: 'Archive report', path: '/decom/statistics/archive-report' },
       ],
     },
-    { label: 'Plan', path: '/decom/plan', icon: 'lucideRoute' },
-    { label: 'History', path: '/decom/history', icon: 'lucideHistory' },
+    { label: 'Plan', path: '/decom/plan' },
+    { label: 'History', path: '/decom/history' },
     {
       label: 'Objects',
       path: '/decom/objects',
-      icon: 'lucideFolderTree',
       children: [
         { label: 'Metadata', path: '/decom/objects/metadata' },
         { label: 'Relationships', path: '/decom/objects/relationships' },
@@ -49,8 +46,8 @@ export const NAV_ITEMS: Record<Profile, NavItem[]> = {
   ],
 };
 
-/** Shown in both profiles, under the profile menu. */
+/** Shared by both modes. */
 export const SHARED_NAV_ITEMS: NavItem[] = [
-  { label: 'Settings', path: '/settings', icon: 'lucideSettings' },
-  { label: 'Tour', path: '/tour', icon: 'lucideCompass' },
+  { label: 'Settings', path: '/settings' },
+  { label: 'Tour', path: '/tour' },
 ];

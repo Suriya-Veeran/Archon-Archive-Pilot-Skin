@@ -1,10 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 
-/**
- * Card with optional title/description.
- * Slots: default = body, [card-actions] = header right, [card-footer] = footer.
- */
+/** Card. Slots: default = body, [card-actions] = header right. */
 @Component({
   selector: 'archon-card',
   imports: [HlmCardImports],
@@ -14,5 +11,4 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 export class ArchonCard {
   readonly title = input<string>();
   readonly description = input<string>();
-  readonly class = input<string>('');
 }

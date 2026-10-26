@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ArchonSharedImports, ArchonUiImports } from '@shared';
+import { ArchonSharedImports } from '@shared';
 
 @Component({
   selector: 'archon-live-analysis',
-  imports: [ArchonSharedImports, ArchonUiImports],
+  imports: [ArchonSharedImports],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './analysis.html',
 })
