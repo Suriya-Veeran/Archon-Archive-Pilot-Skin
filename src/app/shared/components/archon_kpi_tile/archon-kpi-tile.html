@@ -1,0 +1,12 @@
+<div class="rounded-xl border bg-card p-4">
+  <div class="text-xs font-medium tracking-wide text-muted-foreground uppercase">{{ label() }}</div>
+  <div class="mt-1 text-2xl font-semibold tabular-nums">{{ value() }}</div>
+  @if (sub() || status()) {
+    <div class="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
+      @if (status()) {
+        <archon-status-badge [status]="status()!" [label]="statusLabel()" />
+      }
+      {{ sub() }}
+    </div>
+  }
+</div>

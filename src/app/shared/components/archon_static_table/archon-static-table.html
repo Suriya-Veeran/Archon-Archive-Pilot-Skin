@@ -1,0 +1,86 @@
+@if (exportName()) {
+  <div class="mb-3 flex justify-end">
+    <button hlmBtn variant="outline" size="sm" type="button" (click)="export()">
+      <ng-icon name="lucideDownload" class="size-4" /> Export
+    </button>
+  </div>
+}
+<div hlmTableContainer class="rounded-md border">
+  <table hlmTable>
+    <thead hlmTHead>
+      <tr hlmTr>
+        @for (col of columns(); track col.key) {
+          <th hlmTh [class]="alignClass(col)">
+            @if (col.sortable) {
+              <button
+                type="button"
+                class="inline-flex items-center gap-1"
+                (click)="toggleSort(col.key)"
+              >
+                {{ col.header }}
+                <ng-icon class="size-3.5" [name]="sortIcon(col.key)" />
+              </button>
+            } @else {
+              {{ col.header }}
+            }
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody hlmTBody>
+      @for (row of pageRows(); track $index; let odd = $odd) {
+        <tr
+          hlmTr
+          class="cursor-pointer"
+          [class.bg-muted/30]="striped && odd"
+          (click)="rowClick.emit(row)"
+        >
+          @for (col of columns(); track col.key) {
+            <td hlmTd [class]="alignClass(col) + ' ' + cellPad()">
+              @if (cellMap().get(col.key); as tpl) {
+                <ng-container *ngTemplateOutlet="tpl; context: { $implicit: row }" />
+              } @else {
+                {{ cell(row, col) }}
+              }
+            </td>
+          }
+        </tr>
+      } @empty {
+        <tr hlmTr>
+          <td
+            hlmTd
+            class="h-24 text-center text-muted-foreground"
+            [attr.colspan]="columns().length"
+          >
+            {{ empty() }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+@if (pageCount() > 1) {
+  <div class="mt-3 flex items-center justify-between text-sm text-muted-foreground">
+    <span>{{ rangeLabel() }}</span>
+    <div class="flex gap-2">
+      <button
+        hlmBtn
+        variant="outline"
+        size="sm"
+        [disabled]="page() === 0"
+        (click)="page.set(page() - 1)"
+      >
+        Previous
+      </button>
+      <button
+        hlmBtn
+        variant="outline"
+        size="sm"
+        [disabled]="page() >= pageCount() - 1"
+        (click)="page.set(page() + 1)"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+}

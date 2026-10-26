@@ -1,0 +1,33 @@
+<archon-page-header title="Plan" subtitle="Decommission"></archon-page-header>
+<archon-stepper [steps]="steps" [(active)]="active">
+  @switch (active()) {
+    @case (0) {
+      <archon-placeholder
+        title="Step assessment"
+        path="modules/decom/plan/step-assessment/"
+        note=""
+      />
+    }
+    @case (1) {
+      <archon-placeholder
+        title="Step review"
+        path="modules/decom/plan/step-review/"
+        note="Scope, Domains, ADS app, Dry run"
+      />
+    }
+    @case (2) {
+      <archon-placeholder
+        title="Step execution"
+        path="modules/decom/plan/step-execution/"
+        note="Pipeline, Schedule"
+      />
+    }
+    @case (3) {
+      <archon-placeholder
+        title="Step custody"
+        path="modules/decom/plan/step-custody/"
+        note="Checks, Sign-off, Certificate"
+      />
+    }
+  }
+</archon-stepper>

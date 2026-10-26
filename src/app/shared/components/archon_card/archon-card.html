@@ -1,0 +1,17 @@
+<section hlmCard [class]="class()">
+  @if (title() || description()) {
+    <div hlmCardHeader>
+      @if (title()) {
+        <h3 hlmCardTitle>{{ title() }}</h3>
+      }
+      @if (description()) {
+        <p hlmCardDescription>{{ description() }}</p>
+      }
+      <div hlmCardAction><ng-content select="[card-actions]" /></div>
+    </div>
+  }
+  <div hlmCardContent>
+    <ng-content />
+  </div>
+  <ng-content select="[card-footer]" />
+</section>

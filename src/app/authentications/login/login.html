@@ -1,0 +1,45 @@
+<div class="flex min-h-dvh items-center justify-center bg-muted/40 p-4">
+  <section hlmCard class="w-full max-w-sm">
+    <div hlmCardHeader>
+      <h1 hlmCardTitle class="text-xl">Sign in to Archon</h1>
+      <p hlmCardDescription>Use your Archon account or company SSO.</p>
+    </div>
+    <div hlmCardContent>
+      <form class="grid gap-4" [formGroup]="form" (ngSubmit)="submit()">
+        <archon-input
+          archonAutofocus
+          label="Username"
+          autocomplete="username"
+          formControlName="username"
+          [required]="true"
+          [error]="fieldError('username')"
+        />
+        <archon-input
+          label="Password"
+          type="password"
+          autocomplete="current-password"
+          formControlName="password"
+          [required]="true"
+          [error]="fieldError('password')"
+        />
+        @if (error()) {
+          <p class="text-sm text-destructive" role="alert">{{ error() }}</p>
+        }
+        <button hlmBtn type="submit" class="w-full" [disabled]="submitting()">
+          @if (submitting()) {
+            <hlm-spinner class="size-4" />
+          }
+          Sign in
+        </button>
+      </form>
+      <div class="my-4 flex items-center gap-3">
+        <hlm-separator class="flex-1" />
+        <span class="text-xs text-muted-foreground">OR</span>
+        <hlm-separator class="flex-1" />
+      </div>
+      <button hlmBtn variant="outline" type="button" class="w-full" (click)="sso()">
+        Continue with SSO
+      </button>
+    </div>
+  </section>
+</div>

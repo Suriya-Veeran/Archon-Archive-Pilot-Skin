@@ -1,0 +1,12 @@
+<hlm-sheet [side]="side()" [state]="open() ? 'open' : 'closed'" (closed)="open.set(false)">
+  <hlm-sheet-content *hlmSheetPortal="let ctx" class="w-full overflow-y-auto" [class]="width()">
+    <hlm-sheet-header>
+      <h3 hlmSheetTitle>{{ title() }}</h3>
+      @if (description()) {
+        <p hlmSheetDescription>{{ description() }}</p>
+      }
+    </hlm-sheet-header>
+    <div class="flex-1 px-4"><ng-content /></div>
+    <hlm-sheet-footer><ng-content select="[panel-footer]" /></hlm-sheet-footer>
+  </hlm-sheet-content>
+</hlm-sheet>
